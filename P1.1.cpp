@@ -69,6 +69,7 @@ int main()
 
         else
         {
+            cout<<"Thank You!!"<<endl;
             break;
         }
 
