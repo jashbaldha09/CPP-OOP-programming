@@ -13,7 +13,7 @@ public:
     }
     void withdraw(int amount)
     {
-        balance-=amounnjfkdgb vjdbt;
+        balance-=amount;
     }
     void display()
     {
