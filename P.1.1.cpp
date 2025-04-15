@@ -1,79 +1,102 @@
 #include<iostream>
 using namespace std;
 
-class bank
-{
-public:
+class Bank {
+private:
     int acc_number;
     double balance;
     string name;
-    void deposit(int amount)
-    {
-        balance+=amount;
+
+public:
+    Bank(string Mname, int Macc_number, double Mbalance) {
+        name = Mname;
+        acc_number = Macc_number;
+        balance = Mbalance;
     }
-    void withdraw(int amount)
-    {
-        balance-=amount;
+
+    void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            cout << "Deposit successful!" << endl;
+        } else {
+            cout << "Invalid amount." << endl;
+        }
     }
-    void display()
-    {
-        cout<<"Your balance is "<<balance<<endl;
+
+    void withdraw(double amount) {
+        if (amount <= 0) {
+            cout << "Invalid amount." << endl;
+        } else if (balance < 10) {
+            cout << "Your balance is less than 10. You can't withdraw." << endl;
+        } else if (amount > balance) {
+            cout << "Insufficient balance. Withdrawal failed." << endl;
+        } else {
+            balance -= amount;
+            cout << "Withdrawal successful!" << endl;
+        }
+    }
+
+    void display() const {
+        cout << "Account Holder: " << name << endl;
+        cout << "Account Number: " << acc_number << endl;
+        cout << "Your balance is: " << balance << endl;
     }
 };
 
-int main()
-{
+int main() {
+    int Macc_number;
+    string Mname;
     char choice;
-    double amount;
-    bank b1;
+    double amount, Mbalance;
 
-    cout<<"Enter your name:";
-    getline(cin,b1.name);
+    cout << "Enter your name: ";
+    getline(cin, Mname);
 
-    cout<<"Enter your account number:";
-    cin>>b1.acc_number;
+    cout << "Enter your account number: ";
+    cin >> Macc_number;
 
-    cout<<"For DEPOSIT press 1"<<endl<<"For WITHDRAW press 2"<<endl<<"For BALANCE press 3"<<endl<<"For EXIT press 4";
-    while(1)
-    {
-        cout<<endl;
-        cout<<"Enter your choice:";
-        cin>>choice;
-        if(choice == '1')
-        {
-            cout<<"Enter your amount to deposit:";
-            cin>>amount;
-            b1.deposit(amount);
+    cout << "Enter your initial balance: ";
+    cin >> Mbalance;
 
-        }
+    Bank b1(Mname, Macc_number, Mbalance);
 
-        else if(choice == '2')
-        {
-            if(b1.balance < 10)
-            {
-                cout<<"Your balance is less than 10 so you can't withdraw"<<endl;
-            }
-            else
-            {
-                cout<<"Enter your amount to withdraw:";
-                cin>>amount;
+    cout << "\n----- MENU -----\n"
+         << "1. Deposit\n"
+         << "2. Withdraw\n"
+         << "3. Check Balance\n"
+         << "4. Exit\n";
+
+    while (true) {
+        cout << "\nEnter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case '1':
+                cout << "Enter amount to deposit: ";
+                cin >> amount;
+                b1.deposit(amount);
+                break;
+
+            case '2':
+                cout << "Enter amount to withdraw: ";
+                cin >> amount;
                 b1.withdraw(amount);
-            }
+                break;
 
+            case '3':
+                b1.display();
+                break;
+
+            case '4':
+                cout << "Thank You for banking with us!" << endl;
+                cout << "------------------------------" << endl;
+                cout << "Prepared by JASHKUMAR:24CE004" << endl;
+                return 0;
+
+            default:
+                cout << "Invalid choice. Please try again." << endl;
         }
-
-        else if(choice == '3')
-        {
-            b1.display();
-        }
-
-        else
-        {
-            cout<<"Thank You!!"<<endl;
-            break;
-        }
-
     }
         cout<<"------------------------------"<<endl;
-        cout<<"Prepared by JASHKUMAR:24CE004";
+        cout<<"Prepared by Jashkumar:24CE004";
 }
