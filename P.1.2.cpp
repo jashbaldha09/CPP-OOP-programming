@@ -1,107 +1,111 @@
 #include<iostream>
 using namespace std;
 
-class invertory
-{
-public:
-    int ID,quantity,price;
+class Inventory {
+private:
+    int ID, quantity, price;
     string name;
 
-    void addproduct()
-    {
-        cout<<"Enter your ID : "<<endl;
-        cin>>ID;
+public:
+    void addProduct() {
+        cout << "Enter your ID: ";
+        cin >> ID;
 
-        cout<<"Enter the quantity : "<<endl;
-        cin>>quantity;
+        cout << "Enter the quantity: ";
+        cin >> quantity;
 
-        cout<<"Enter price of product : "<<endl;
-        cin>>price;
+        cout << "Enter price of product: ";
+        cin >> price;
 
-        cout<<"Enter product name : "<<endl;
-        cin>>name;
+        cout << "Enter product name: ";
+        cin >> name;
+    }
+
+    int getID() {
+        return ID;
+    }
+
+    int getQuantity() {
+        return quantity;
+    }
+
+    void updateQuantity(int q) {
+        quantity += q;
+    }
+
+    int getValue() {
+        return quantity * price;
     }
 };
 
-int main()
-{
-    invertory management[20];
-    int choice,n=0;
-    cout<<"Enter 1 to add product"<<endl;
-    cout<<"Enter 2 to add quantity"<<endl;
-    cout<<"Enter 3 to calculate the total values of all product"<<endl;
-    cout<<"Enter 4 to Exit"<<endl;
+int main() {
+    Inventory management[20];
+    int choice, n = 0;
 
-    while(1)
-    {
-        jash:
-        cout<<endl<<"Enter here: ";
-        cin>>choice;
-        cout<<endl;
+    cout << "Enter 1 to add product" << endl;
+    cout << "Enter 2 to add quantity" << endl;
+    cout << "Enter 3 to calculate the total value of all products" << endl;
+    cout << "Enter 4 to Exit" << endl;
 
-        if(choice==1)
-        {
+    while (1) {
+        cout << endl << "Enter here: ";
+        cin >> choice;
+
+        if (choice == 1) {
             int amount;
-            cout<<"Enter the numbers of products : ";
-            cin>>amount;
+            cout << endl << "Enter the number of products: ";
+            cin >> amount;
 
-            for(int i=1 ; i<=amount ; i++)
-            {
-                cout<<"Enter the detail for product "<<(n+1)<<endl;
-                management[n].addproduct();
+            for (int i = 1; i <= amount; i++) {
+                cout << endl << "Enter the detail for product " << (n + 1) << endl;
+                management[n].addProduct();
                 n++;
             }
-           // break;
         }
 
-        else if(choice==2)
-        {
-            int check_id,quantity;
+        else if (choice == 2) {
+            int check_id, quantity;
             bool found = false;
-            cout<<"Enter your ID to update quantity : ";
-            cin>>check_id;
+            cout << "Enter your ID to update quantity: ";
+            cin >> check_id;
 
-            for(int j=0 ; j<n ; j++)
-            {
-                if(management[j].ID == check_id)
-                {
-                    cout<<"your quantity is "<<management[j].quantity<<endl;
-                    cout<<"Enter your quantity : ";
-                    cin>>quantity;
+            for (int j = 0; j < n; j++) {
+                if (management[j].getID() == check_id) {
+                    cout << "Your current quantity is: " << management[j].getQuantity() << endl;
+                    cout << "Enter quantity to add: ";
+                    cin >> quantity;
 
-                    management[j].quantity += quantity;
-                    cout<<"your quantity successfully updated!"<<endl<<"Your quantity is "<<management[j].quantity<<endl;
+                    management[j].updateQuantity(quantity);
+                    cout << "Quantity successfully updated!" << endl;
+                    cout << "Updated quantity is: " << management[j].getQuantity() << endl;
                     found = true;
                 }
             }
 
-            if(found==false)
-            {
-                cout<<"invalid ID"<<endl;
+            if (!found) {
+                cout << "Invalid ID" << endl;
             }
         }
 
-        else if(choice==3)
-        {
-            int value=0;
-            for(int k=0 ; k<n ; k++)
-            {
-                value += management[k].price*management[k].quantity;
+        else if (choice == 3) {
+            int totalValue = 0;
+            for (int k = 0; k < n; k++) {
+                totalValue += management[k].getValue();
             }
-            cout<<"Total value is "<<value<<endl;
+            cout << "Total value of inventory is: " << totalValue << endl;
         }
 
-        else if(choice==4)
-        {
-            cout<<"Exit the system!!"<<endl;
+        else if (choice == 4) {
+            cout << "Exiting the system!" << endl;
             break;
         }
 
-        else
-        {
-            cout<<"Enter the valid value"<<endl;
-            goto jash;
+        else {
+            cout << "Enter a valid value!" << endl;
         }
     }
-    endl<<cout<<"Created by Jashkumar - 24CE004"<<endl;
+
+    cout << "------------------------------" << endl;
+    cout << "Created by Jashkumar - 24CE004" << endl;
+    return 0;
 }
