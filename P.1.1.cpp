@@ -70,6 +70,11 @@ int main() {
         cout << "\nEnter your choice: ";
         cin >> choice;
 
+        if(choice == '4')
+        {
+            break;
+        }
+
         switch (choice) {
             case '1':
                 cout << "Enter amount to deposit: ";
@@ -87,16 +92,11 @@ int main() {
                 b1.display();
                 break;
 
-            case '4':
-                cout << "Thank You for banking with us!" << endl;
-                cout << "------------------------------" << endl;
-                cout << "Prepared by JASHKUMAR:24CE004" << endl;
-                return 0;
-
             default:
                 cout << "Invalid choice. Please try again." << endl;
         }
     }
-        cout<<"------------------------------"<<endl;
-        cout<<"Prepared by Jashkumar:24CE004";
+    cout<<"------------------------------"<<endl;
+    cout<<"Prepared by Jashkumar:24CE004"<<endl;
+    return 0;
 }
