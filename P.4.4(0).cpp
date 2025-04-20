@@ -75,14 +75,10 @@ public:
 
     void WithdrawMoney(int amount) {
         PreviousBalance = Balance;
-        if (amount > Balance + OverDraftLimit) {
-            cout << "Amount is not enough to withdraw! Withdraw denied" << endl << endl;
-        } else {
-            Balance -= amount;
-            history.push_back("Withdrawn: " + to_string(amount));
-            cout << "Amount " << amount << " withdrawn successfully!" << endl;
-            cout << "Current balance: " << Balance << endl << endl;
-        }
+        Balance -= amount;
+        history.push_back("Withdrawn: " + to_string(amount));
+        cout << "Amount " << amount << " withdrawn successfully!" << endl;
+        cout << "Current balance: " << Balance << endl << endl;
     }
 
     void UndoMoney() {
